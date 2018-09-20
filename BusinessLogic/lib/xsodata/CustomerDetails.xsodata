@@ -1,0 +1,10 @@
+service{
+      "CustomerDetails.Customer"
+	  as "Customer" navigates ("Items" as "Items");
+
+	"CustomerDetails.Orders"
+	  as "Orders";
+
+	association "Items" principal  "Customer"("KUNNR")
+	multiplicity "1" dependent "Orders"("KUNNR") multiplicity "*";
+}

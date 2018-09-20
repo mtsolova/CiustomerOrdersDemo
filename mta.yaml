@@ -1,3 +1,27 @@
 ID: CustomerOrdersDemo
 _schema-version: '2.0'
 version: 0.0.1
+modules:
+  - name: CMData
+    type: hdb
+    path: CMData
+    requires:
+      - name: hdi_CMData
+  - name: BusinessLogic
+    type: nodejs
+    path: BusinessLogic
+    provides:
+      - name: BusinessLogic_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_CMData
+      - name: CMData
+resources:
+  - name: hdi_CMData
+    parameters:
+      config:
+        schema: CMDATA
+    properties:
+      hdi-container-name_3: '${service-name}'
+    type: com.sap.xs.hdi-container

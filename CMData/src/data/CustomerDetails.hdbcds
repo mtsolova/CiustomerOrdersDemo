@@ -1,0 +1,59 @@
+context CustomerDetails {
+    type CustomerNumberT : String(10);
+    type CountryKeyT : String(10);
+    type SDateT : LocalDate;
+    type CurrencyT : String(5);
+    type AmountT : Decimal(15, 2);
+    type NameT : String(35);
+    type PostalCodeT : String(10);
+    type RegionT : String(3);
+    type TelephoneT : String(16);
+    type CompanyCodeT : String(4);
+	type OrderNumberT : String(10);
+	type ReferenceT : String(10);
+
+@Comment : 'Customer '    
+entity Customer {
+		@Comment: 'Customer Number'
+	key KUNNR : CustomerNumberT;
+		@Comment : 'Country Key'
+		LAND1 : CountryKeyT;
+		@Comment : 'Customer Name'	
+		NAME1 : NameT;
+		@Comment : 'City'	
+		ORT01 : NameT;
+		@Comment : 'Postal Code'	
+		PSTLZ : PostalCodeT;
+		@Comment :	'Region'
+		REGIO : RegionT;
+		@Comment : 'Telephone'	
+		TELF1 : TelephoneT;
+    }
+    technical configuration {
+        column store;
+};
+
+@Comment : 'Orders'
+entity Orders{
+		@Comment : 'Customer Number'
+	key KUNNR : CustomerNumberT;
+		@Comment : 'Company Code'
+	key BUKRS : CompanyCodeT;	
+		@Comment : 'Order Number'
+	key VBELN : OrderNumberT;
+		@Comment : 'Total Amount'
+		RBETR : AmountT;
+		@Comment : 'Currency Key'	
+		WAERS : CurrencyT;
+		@Comment : 'Reference Text'	
+		XREF1 : ReferenceT;
+		@Comment : 'Fiscal year'	
+		GJAHR : String(4);
+		@Comment : 'Creation Date'	
+		AEDAT : SDateT;
+	}
+    technical configuration {
+        column store;
+};
+
+};
